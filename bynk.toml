@@ -1,0 +1,6 @@
+# Turn up is a workspace: each numbered folder is the whole project as it
+# stands at the end of one part of the blog's "Build it with Bynk" series.
+# From here, `bynk check`, `bynk fmt .` and `bynk test` run over every part.
+# To follow along or serve one, `cd` into it.
+[workspace]
+members = ["0*"]

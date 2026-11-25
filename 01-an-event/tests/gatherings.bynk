@@ -1,0 +1,31 @@
+suite gatherings {
+	--- Seven in the evening, 1 January 2027 (UTC).
+	fn opening() -> Instant {
+		Instant.fromEpochMillis(1798830000000)
+	}
+
+	case "a gathering with a good title and capacity" {
+		expect gathering("Bynk for beginners", 50, opening()) is Ok(_)
+	}
+
+	case "a capacity of 0 is refused" {
+		expect gathering("Bynk for beginners", 0, opening()) is Err(_)
+	}
+
+	case "a capacity of 501 is refused" {
+		expect gathering("Bynk for beginners", 501, opening()) is Err(_)
+	}
+
+	case "a capacity's bounds are inclusive" {
+		expect Capacity.of(1) is Ok(_)
+		expect Capacity.of(500) is Ok(_)
+	}
+
+	case "a title must be at least three characters" {
+		expect gathering("Hi", 50, opening()) is Err(_)
+	}
+
+	case "a literal capacity is checked when it compiles" {
+		expect smallRoom() == 12
+	}
+}

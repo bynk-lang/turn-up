@@ -1,0 +1,10 @@
+context turnup
+
+consumes bynk { Logger }
+
+service api from http {
+	on GET("/") () -> Effect[HttpResult[String]] by v: Visitor given Logger {
+		let _ <- Logger.info("hello from turnup")
+		Ok("Hello from turnup!")
+	}
+}
